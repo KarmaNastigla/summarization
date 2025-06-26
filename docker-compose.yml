@@ -1,24 +1,25 @@
+# Версия формата файла docker-compose
 version: '3.8'
 
 services:
   backend:
-    build: ./backend
+    build: ./backend       # Сборка образа из Dockerfile в папке backend
     ports:
-      - "8000:8000"
+      - "8000:8000"         # Проброс портов: хост:контейнер
     environment:
-      - PYTHONUNBUFFERED=1
+      - PYTHONUNBUFFERED=1  # Для немедленного вывода логов Python
     volumes:
-      - ./backend/app:/app/app
-    restart: unless-stopped
+      - ./backend/app:/app/app  # Монтирование кода для hot-reload
+    restart: unless-stopped     # Автоматический перезапуск при падении
 
   frontend:
-    build: ./frontend
+    build: ./frontend        # Сборка образа из Dockerfile в папке frontend
     ports:
-      - "8501:8501"
+      - "8501:8501"          # Проброс порта Streamlit
     depends_on:
-      - backend
+      - backend              # Ожидание запуска backend сервиса
     environment:
-      - PYTHONUNBUFFERED=1
+      - PYTHONUNBUFFERED=1   # Для немедленного вывода логов Python
     volumes:
-      - ./frontend:/app
-    restart: unless-stopped
+      - ./frontend:/app      # Монтирование кода для hot-reload
+    restart: unless-stopped  # Автоматический перезапуск при падении

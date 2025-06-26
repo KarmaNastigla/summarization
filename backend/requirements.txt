@@ -1,5 +1,7 @@
-fastapi>=0.68.0
-uvicorn>=0.15.0
-transformers>=4.12.0
-torch>=1.9.0
-python-multipart
+# Файл requirements.txt - список зависимостей Python-проекта
+
+fastapi>=0.68.0       # Обеспечивает роутинг, валидацию данных, документацию OpenAPI
+uvicorn>=0.15.0       # Uvicorn: ASGI-сервер для запуска FastAPI
+transformers>=4.12.0  # Предоставляет модели для суммаризации (BART, T5 и др.)
+torch>=1.9.0          # Фреймворк машинного обучения, для работы моделей из transformers
+python-multipart      # Обработка multipart/form-data, необходим для загрузки файлов через FastAPI
